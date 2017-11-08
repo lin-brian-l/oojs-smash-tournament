@@ -22,7 +22,7 @@ Tournament.prototype.disqualify = function(entrant) {
 
 Tournament.prototype.sortEntrants = function() {
   this.entrants.sort(function(a, b) {
-    return a.rank - b.rank
+    return a.rank - b.rank;
   });
 };
 
@@ -34,4 +34,4 @@ Tournament.prototype.seedBracket = function() {
     let seed = (index + 1).toString();
     that.seeds[seed] = entrant;
   });
-}
+};
