@@ -104,6 +104,5 @@ describe("a tournament", function() {
         "6": plup
       })
     });
-
   });
 });
