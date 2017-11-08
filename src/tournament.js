@@ -14,8 +14,9 @@ Tournament.prototype.register = function(newEntrants) {
 
 Tournament.prototype.disqualify = function(entrant) {
   var dqIndex = this.entrants.findIndex(function(player) {
-    return player.tag === entrant;
+    return player.tag === entrant || player.name === entrant;
   });
+  if (dqIndex === -1) return false
   this.entrants.splice(dqIndex, 1);
 };
 

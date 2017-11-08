@@ -52,10 +52,21 @@ describe("a tournament", function() {
     });
   });
 
-  it("can disqualify registered players based on their tag", function() {
-    tournament.disqualify("Mew2King")
-    expect(tournament.entrants).toEqual([mango, armada, leffen]);
-  })
+  describe("disqualifying players", function() {
+    it("can disqualify registered players based on their tag", function() {
+      tournament.disqualify("Mew2King");
+      expect(tournament.entrants).toEqual([mango, armada, leffen]);  
+    });
+
+    it("can disqualify registered players based on their name", function() {
+      tournament.disqualify("Joseph Marquez");
+      expect(tournament.entrants).toEqual([mew2king, armada, leffen])
+    });
+
+    it("returns false if a player cannot be found", function() {
+      expect(tournament.disqualify("asdf")).toEqual(false);
+    });
+  });
 
   it("can sort entrants in order of highest to lowest rank", function() {
     tournament.sortEntrants();
@@ -80,33 +91,19 @@ describe("a tournament", function() {
         "4": leffen
       });
     });
+
+    it("can generate a new seed object if new players are registered", function() {
+      tournament.register([hungrybox, plup]);
+      tournament.seedBracket();
+      expect(tournament.seeds).toEqual({
+        "1": armada,
+        "2": hungrybox,
+        "3": mango,
+        "4": mew2king,
+        "5": leffen,
+        "6": plup
+      })
+    });
+
   });
-
-  // it("is empty if it has no bikes", function() {
-  //   station.bikes = [];
-  //   expect(station.empty()).toBe(true);
-  // });
-
-  // it("has a newest bike determined by model year", function() {
-  //   expect(station.newestBike()).toEqual(newerBike);
-  // });
-
-  // describe("releasing bikes", function() {
-  //   it("releases its newest bike", function() {
-  //     expect(station.release()).toEqual(newerBike);
-  //   });
-
-  //   it("does not keep released bikes", function() {
-  //     expect(station.bikes).toContain(newerBike);
-  //     station.release();
-  //     expect(station.bikes).not.toContain(newerBike);
-  //   });
-
-  //   describe("when the station is empty", function() {
-  //     it("releases nothing", function() {
-  //       station.bikes = [];
-  //       expect(station.release()).toBeUndefined();
-  //     });
-  //   });
-  // });
 });
