@@ -36,7 +36,7 @@ describe("a tournament", function() {
 
   it("starts with a null seed object", function() {
     expect(tournament.seeds).toEqual(null)
-  })
+  });
 
   describe("registering players", function() {
     it("can register an additional player", function() {
@@ -71,7 +71,7 @@ describe("a tournament", function() {
   it("can sort entrants in order of highest to lowest rank", function() {
     tournament.sortEntrants();
     expect(tournament.entrants).toEqual([armada, mango, mew2king, leffen])
-  })
+  });
 
   describe("seeding the tournament bracket", function() {
     beforeEach(function() {
@@ -102,8 +102,7 @@ describe("a tournament", function() {
         "4": mew2king,
         "5": leffen,
         "6": plup
-      })
+      });
     });
-
   });
 });
