@@ -1,1 +1,2 @@
-var Tournament = function() {};
+var Tournament = function() {
+};

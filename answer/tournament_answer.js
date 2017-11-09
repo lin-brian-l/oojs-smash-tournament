@@ -2,7 +2,7 @@ var Tournament = function(name, location, entrants) {
   this.name = name;
   this.location = location;
   this.entrants = entrants;
-  this.seeds = null;
+  this.seeds = {};
 };
 
 Tournament.prototype.register = function(newEntrants) {
@@ -27,7 +27,6 @@ Tournament.prototype.sortEntrants = function() {
 };
 
 Tournament.prototype.seedBracket = function() {
-  this.seeds = {};
   this.sortEntrants();
   var that = this;
   this.entrants.forEach(function(entrant, index){

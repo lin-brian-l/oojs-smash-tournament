@@ -1,1 +1,2 @@
-var Player = function() {};
+var Player = function() {
+};

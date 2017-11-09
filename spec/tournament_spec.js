@@ -34,8 +34,8 @@ describe("a tournament", function() {
     expect(tournament.entrants).toEqual([mango, mew2king, armada, leffen]);
   });
 
-  it("starts with a null seed object", function() {
-    expect(tournament.seeds).toEqual(null)
+  it("starts with an empty seed object", function() {
+    expect(tournament.seeds).toEqual({})
   });
 
   describe("registering players", function() {
@@ -82,7 +82,7 @@ describe("a tournament", function() {
       expect(tournament.entrants).toEqual([armada, mango, mew2king, leffen]);
     });
 
-    it("can generate a seed object based on player rank", function() {
+    it("can generate a seed object based on player rank (see below)", function() {
       // NOTE: Research how to add new properties to an object.
       expect(tournament.seeds).toEqual({
         "1": armada,
@@ -91,6 +91,11 @@ describe("a tournament", function() {
         "4": leffen
       });
     });
+
+    // Seeding is done to prevent highly-ranked entrants from playing each other early in tournament. 
+    // 1st seed is given to the player with the highest rank, 2nd seed is given to the player with the 
+    // second-highest rank, and so on. For example, if a tournament had three entrants such that 
+    // p1.rank = 4, p2.rank = 2, and p3.rank = 5, the seed object would be {"1": p2, "2": p4, "3": p3}.
 
     it("can generate a new seed object if new players are registered", function() {
       tournament.register([hungrybox, plup]);
